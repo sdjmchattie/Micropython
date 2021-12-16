@@ -44,7 +44,7 @@ class SevenSegment:
         self._cur_digit = (self._cur_digit + 1) % 4
         
         try:
-            digit = self.digits[self._cur_digit]
+            digit = self.digits[self._cur_digit] % 10
         except:
             digit = 0
 

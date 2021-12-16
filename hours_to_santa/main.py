@@ -18,9 +18,7 @@ def update_time(timer):
     if digits[4] >= 5:
         digits[3] += 1
     seven_segment.digits = digits
-    print(displayed_hours)
     
-
 
 rtc = RTC(I2C(0, sda = Pin(4), scl = Pin(5)))
 seven_segment = SevenSegment(20, 16, 13, 11, 10, 19, 14, 12, 21, 18, 17, 15)
