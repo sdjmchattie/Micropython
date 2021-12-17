@@ -12,7 +12,10 @@ def make_time(t):
 def update_time(timer):
     global current_time
     global seven_segment
-    current_time += 1
+    if current_time % 3600 < 10:
+        current_time = make_time(rtc.read_time()[1:])
+    else:
+        current_time += 10
     displayed_hours = fabs(current_time - goal_time) / 3600
     extracted = extract_digits(displayed_hours)
     seven_segment.dp_pos = extracted['dp_pos']
@@ -20,12 +23,15 @@ def update_time(timer):
 
 rtc = RTC(I2C(0, sda = Pin(4), scl = Pin(5)))
 seven_segment = SevenSegment(20, 16, 13, 11, 10, 19, 14, 12, 21, 18, 17, 15)
-current_time = make_time(rtc.read_time()[1:])
+current_time = 0
 goal_time = make_time([21, 12, 25, 0, 0, 0])
 
 
 def run():
-    Timer(freq=1, mode=Timer.PERIODIC, callback=update_time)
+    timer = Timer(period=10000, mode=Timer.PERIODIC, callback=update_time)
+    update_time(timer)
+    while True:
+        pass
 
 if __name__ == "__main__":
     run()
