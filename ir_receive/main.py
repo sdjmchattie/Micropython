@@ -1,4 +1,3 @@
-import time
 from machine import Pin
 from ir_rx.nec import NEC_8  # NEC remote, 8 bit addresses.
 
