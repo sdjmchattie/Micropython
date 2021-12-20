@@ -1,3 +1,3 @@
-# PiPicoMicroPython
+# Micropython
 
-Projects based on MicroPython for the Raspberry Pi Pico
+Random projects based on Micropython for the Raspberry Pi Pico / D1 Mini etc.
